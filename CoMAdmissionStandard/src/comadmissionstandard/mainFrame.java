@@ -6,6 +6,12 @@
 package comadmissionstandard;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,10 +22,33 @@ public class mainFrame extends javax.swing.JFrame {
     /**
      * Creates new form mainFrame
      */
-    public mainFrame() {
+    public mainFrame() throws FontFormatException, IOException {
         initComponents();
         getContentPane().setBackground(new Color(0, 124, 186));
         jPanel1.setBackground(new Color(255, 255, 255));
+        Font titleFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Open_Sans\\OpenSans-Regular.ttf")).deriveFont(72f);
+        jLabel1.setFont(titleFont);
+        jLabel1.setForeground(new Color(0, 124, 186));
+        
+        Font inputFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Open_Sans\\OpenSans-Regular.ttf")).deriveFont(24f);
+        label.setFont(inputFont);
+        label1.setFont(inputFont);
+        label2.setFont(inputFont);
+        label3.setFont(inputFont);
+        guardians.setFont(inputFont);
+        youths.setFont(inputFont);
+        children.setFont(inputFont);
+        infants.setFont(inputFont);
+        check.setFont(inputFont);
+        help.setFont(inputFont);
+        
+        Font resultFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Open_Sans\\OpenSans-Regular.ttf")).deriveFont(32f);
+        result.setFont(resultFont);
+        description.setFont(resultFont);
+        description1.setFont(resultFont);
+        result.setForeground(new Color(0, 124, 186));
+        description.setForeground(new Color(0, 124, 186));
+        description1.setForeground(new Color(0, 124, 186));
     }
 
     /**
@@ -34,7 +63,7 @@ public class mainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        help = new javax.swing.JButton();
         label = new javax.swing.JLabel();
         label1 = new javax.swing.JLabel();
         label2 = new javax.swing.JLabel();
@@ -48,6 +77,8 @@ public class mainFrame extends javax.swing.JFrame {
         description = new javax.swing.JLabel();
         info = new javax.swing.JLabel();
         info1 = new javax.swing.JLabel();
+        description1 = new javax.swing.JLabel();
+        info2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 124, 186));
@@ -58,7 +89,12 @@ public class mainFrame extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\willi\\Documents\\NetBeansProjects\\CoMAdmissionStandard\\img\\logo.png")); // NOI18N
 
-        jButton1.setText("Help");
+        help.setText("View Standard");
+        help.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpActionPerformed(evt);
+            }
+        });
 
         label.setText("Number of Guardians (14+):");
 
@@ -85,99 +121,97 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        result.setText("jLabel3");
+        info.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        info.setText("All individuals aged 10 and up may enter the swim unaccompanied. ");
 
-        description.setText("jLabel3");
+        info1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        info1.setText("All individuals aged 6-9 may enter the swim with an out of water guardian if they pass the swim test.");
 
-        info.setText("All individuals aged 10 and up may enter the swim.\n");
-
-        info1.setText("All individuals aged 6 and up may enter the swim with an out of water guardian if they pass the swim test.");
+        info2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        info2.setText("Individuals aged 5 and under, or aged 6 to 9 that do not pass the swim test must remain within arms reach.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(info)
+                            .addComponent(info1)
+                            .addComponent(info2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(description1)
+                            .addComponent(description)
+                            .addComponent(result)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(617, 617, 617)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(100, 100, 100)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(label1)
-                                    .addComponent(label)
-                                    .addComponent(label2)
-                                    .addComponent(label3))
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(check)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(label1)
+                                        .addGap(156, 156, 156))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(infants, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(children, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(youths, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(guardians, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                                        .addGap(34, 34, 34)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(info1)
-                                            .addComponent(info))))))
-                        .addGap(0, 424, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(228, 228, 228)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(description)
-                    .addComponent(result))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(label)
+                                            .addComponent(label3)
+                                            .addComponent(label2)
+                                            .addComponent(help))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(infants, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                        .addComponent(children, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(youths, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(guardians, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(check, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label)
-                            .addComponent(guardians, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(info))))
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label)
+                    .addComponent(guardians, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label1)
+                    .addComponent(youths, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label2)
+                    .addComponent(children, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label3)
+                    .addComponent(infants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(check)
+                    .addComponent(help))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(info1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(result)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(description)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(description1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label1)
-                            .addComponent(youths, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(info)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label2)
-                            .addComponent(children, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label3)
-                            .addComponent(infants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(check)
-                        .addGap(66, 66, 66)
-                        .addComponent(result)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(description)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(info1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(info2))
+                    .addComponent(jLabel2))
                 .addContainerGap())
         );
 
@@ -186,9 +220,9 @@ public class mainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(35, 35, 35))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,16 +240,25 @@ public class mainFrame extends javax.swing.JFrame {
         check();
     }//GEN-LAST:event_checkActionPerformed
 
+    private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
+        // TODO add your handling code here:
+        Admission admission = new Admission();
+        admission.setVisible(true);
+    }//GEN-LAST:event_helpActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
     public void check() {
+        result.setText("");
+        description.setText("");
+        description1.setText("");
         int numGuardians = Integer.parseInt(guardians.getText());
         int numYouths = Integer.parseInt(youths.getText());
         int numChildren = Integer.parseInt(children.getText());
         int numInfants = Integer.parseInt(infants.getText());
-        
+        //LET'S ADD IN ACTUAL NUMBERS
         //Case 1: There are too many infants for each guardian to supervise
         if(numInfants > numGuardians * 2) {
             result.setText("DOES NOT MEET STANDARD");
@@ -224,14 +267,18 @@ public class mainFrame extends javax.swing.JFrame {
         
         //Case 2: There are too many children for each guardian to supervise, even in lifejackets
         else if(numChildren > numGuardians * 8) {
-            result.setText("DOES NOT MEET STANDARD");
-            description.setText("There must be 1 guardian for every 8 children WEARING LIFEJACKETS between the ages of 6 to 9.");
+            result.setText("STANDARD IS CONDITITONALLY MET");
+            description.setText("There must be 1 guardian for every 8 supervised children WEARING LIFEJACKETS aged 6 to 9.");
         }
         
-        //Case 3: There are infants that require guardian supervision, as well as potential children that may need supervision
-        else if(numInfants <= numGuardians * 2 && numChildren > numGuardians * 2 && numInfants > 0 && numChildren > 0) {
+        else if(numInfants == numGuardians * 2 && numInfants > 0 && numChildren > 0) {
             result.setText("STANDARD IS CONDITIONALLY MET");
-            description.setText("Any guardian supervising a child aged 5 and under can only supervise 1 other child, regardless of age. Any unsupervised children aged 6 to 9 must pass the SWIM TEST to meet the standard.");
+            description.setText("Any children aged 6-9 must pass the SWIM TEST to meet the standard.");
+        }
+        //Case 3: There are infants that require guardian supervision, as well as potential children that may need supervision
+        else if(numInfants <= numGuardians * 2 && numChildren > numGuardians  && numInfants > 0 && numChildren > 0) {
+            result.setText("STANDARD IS CONDITIONALLY MET");
+            description.setText("Guardians supervising a child 5 and under can only supervise 1 other child, regardless of age.");
         }
         
         //Case 4: There are too many children for a guardian to supervise unless lifejackets are worn.
@@ -247,9 +294,13 @@ public class mainFrame extends javax.swing.JFrame {
         
         else if(numChildren <= numGuardians * 8 && numInfants == 0 && numChildren > 0) {
             result.setText("STANDARD IS MET");
-            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach. If there are more than 4 children aged 9 and under that require supervision, they must all wear LIFEJACKETS.");
+            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
+            description1.setText("If there are over 4 children 9 and under requiring supervision, they must all wear LIFEJACKETS.");
         }
-        
+        else if(numChildren <= numGuardians * 4 && numInfants == 0 && numChildren > 0) {
+            result.setText("STANDARD IS MET");
+            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
+        }
         else if(numChildren <= numGuardians * 4 && numInfants == 0 && numChildren > 0) {
             result.setText("STANDARD IS MET");
             description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
@@ -257,6 +308,7 @@ public class mainFrame extends javax.swing.JFrame {
         else {
             result.setText("STANDARD IS MET");
             description.setText("");
+            description1.setText("");
         }
         /*
         CASES:
@@ -294,7 +346,13 @@ public class mainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFrame().setVisible(true);
+                try {
+                    new mainFrame().setVisible(true);
+                } catch (FontFormatException ex) {
+                    Logger.getLogger(mainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(mainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -303,11 +361,13 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JButton check;
     private javax.swing.JTextField children;
     private javax.swing.JLabel description;
+    private javax.swing.JLabel description1;
     private javax.swing.JTextField guardians;
+    private javax.swing.JButton help;
     private javax.swing.JTextField infants;
     private javax.swing.JLabel info;
     private javax.swing.JLabel info1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel info2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
