@@ -49,6 +49,8 @@ public class mainFrame extends javax.swing.JFrame {
         result.setForeground(new Color(0, 124, 186));
         description.setForeground(new Color(0, 124, 186));
         description1.setForeground(new Color(0, 124, 186));
+        
+        author.setForeground(new Color(255, 255, 255));
     }
 
     /**
@@ -79,6 +81,7 @@ public class mainFrame extends javax.swing.JFrame {
         info1 = new javax.swing.JLabel();
         description1 = new javax.swing.JLabel();
         info2 = new javax.swing.JLabel();
+        author = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 124, 186));
@@ -215,6 +218,8 @@ public class mainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        author.setText("A computer application by William King");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,13 +228,19 @@ public class mainFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(author)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(35, 35, 35))
+                .addGap(6, 6, 6)
+                .addComponent(author)
+                .addContainerGap())
         );
 
         pack();
@@ -372,6 +383,7 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel author;
     private javax.swing.JButton check;
     private javax.swing.JTextField children;
     private javax.swing.JLabel description;
