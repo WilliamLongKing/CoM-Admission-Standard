@@ -263,28 +263,42 @@ public class mainFrame extends javax.swing.JFrame {
         if(numInfants > numGuardians * 2) {
             result.setText("DOES NOT MEET STANDARD");
             description.setText("There must be 1 guardian for every 2 children aged 5 and under.");
+            description1.setText((int)((Math.ceil((double)numInfants/2)) - numGuardians) + " more guardian(s) are needed to supervise " + numInfants + " children aged 5 and under.");
         }
         
         //Case 2: There are too many children for each guardian to supervise, even in lifejackets
         else if(numChildren > numGuardians * 8) {
             result.setText("STANDARD IS CONDITITONALLY MET");
             description.setText("There must be 1 guardian for every 8 supervised children WEARING LIFEJACKETS aged 6 to 9.");
+            description1.setText("At least " + (numChildren-(numGuardians * 8)) + " child(ren) aged 6-9 must pass the SWIM TEST to meet the standard." );
         }
+        
         
         else if(numInfants == numGuardians * 2 && numInfants > 0 && numChildren > 0) {
             result.setText("STANDARD IS CONDITIONALLY MET");
             description.setText("Any children aged 6-9 must pass the SWIM TEST to meet the standard.");
+            description1.setText("All " + numChildren + " child(ren) must pass the SWIM TEST to meet the standard.");
         }
+        
         //Case 3: There are infants that require guardian supervision, as well as potential children that may need supervision
         else if(numInfants <= numGuardians * 2 && numChildren > numGuardians  && numInfants > 0 && numChildren > 0) {
+            int freeGuardians = numGuardians - (int)((Math.ceil((double)numInfants/2)));
             result.setText("STANDARD IS CONDITIONALLY MET");
             description.setText("Guardians supervising a child 5 and under can only supervise 1 other child, regardless of age.");
+            if(freeGuardians > 0) {
+                description1.setText("At least " + (int)(numChildren - (freeGuardians*8)) + " child(ren) must pass the SWIM TEST to meet the standard.");
+            }
+            else if(freeGuardians <= 0) {
+                description1.setText("All " + numChildren + " child(ren) must pass the SWIM TEST to meet the standard.");
+            }
         }
+        
         
         //Case 4: There are too many children for a guardian to supervise unless lifejackets are worn.
         else if(numChildren > numGuardians * 4 && numInfants == 0) {
             result.setText("STANDARD IS CONDITIONALLY MET");
             description.setText("As long as each child aged 6-9 is wearing a LIFEJACKET, the standard is met.");
+            description1.setText("OR " + (numChildren-(numGuardians * 4)) + " child(ren) aged 6-9 must pass the swim test to meet the standard.");
         }
         
         else if(numInfants <= numGuardians * 2 && numChildren == 0 && numInfants > 0) {
@@ -292,19 +306,19 @@ public class mainFrame extends javax.swing.JFrame {
             description.setText("All children aged 5 and under must be within arms reach of a guardian.");
         }
         
+        else if(numChildren <= numGuardians * 4 && numInfants == 0 && numChildren > 0) {
+            result.setText("STANDARD IS MET");
+            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
+        }
+        
+        /*
         else if(numChildren <= numGuardians * 8 && numInfants == 0 && numChildren > 0) {
             result.setText("STANDARD IS MET");
             description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
             description1.setText("If there are over 4 children 9 and under requiring supervision, they must all wear LIFEJACKETS.");
         }
-        else if(numChildren <= numGuardians * 4 && numInfants == 0 && numChildren > 0) {
-            result.setText("STANDARD IS MET");
-            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
-        }
-        else if(numChildren <= numGuardians * 4 && numInfants == 0 && numChildren > 0) {
-            result.setText("STANDARD IS MET");
-            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
-        }
+        */
+        
         else {
             result.setText("STANDARD IS MET");
             description.setText("");
