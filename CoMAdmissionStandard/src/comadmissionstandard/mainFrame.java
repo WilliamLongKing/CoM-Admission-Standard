@@ -81,6 +81,7 @@ public class mainFrame extends javax.swing.JFrame {
         info1 = new javax.swing.JLabel();
         description1 = new javax.swing.JLabel();
         info2 = new javax.swing.JLabel();
+        info3 = new javax.swing.JLabel();
         author = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,15 +108,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         label3.setText("Number of Dependent Children (5 and under):");
 
-        guardians.setText("0");
         guardians.setToolTipText("");
 
-        youths.setText("0");
         youths.setToolTipText("");
-
-        children.setText("0");
-
-        infants.setText("0");
 
         check.setText("Check Standard");
         check.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +128,9 @@ public class mainFrame extends javax.swing.JFrame {
         info2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         info2.setText("Individuals aged 5 and under, or aged 6 to 9 that do not pass the swim test must remain within arms reach.");
 
+        info3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        info3.setText("Guardians may supervise 2 children if one is 5 and under, 4 children all aged 6-9 (no lifejackets), or 8 children all aged 6-9 (lifejackets).");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,7 +142,8 @@ public class mainFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(info)
                             .addComponent(info1)
-                            .addComponent(info2))
+                            .addComponent(info2)
+                            .addComponent(info3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addContainerGap())
@@ -209,6 +208,8 @@ public class mainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(info3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(info)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(info1)
@@ -248,7 +249,17 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActionPerformed
         // TODO add your handling code here:
-        check();
+        try {
+            check();
+            //guardians.setText("");
+            //children.setText("");
+            //infants.setText("");
+            //youths.setText("");
+        } catch (NumberFormatException e) {
+            result.setText("ERROR");
+            description.setText("Please fill out all fields before checking the standard.");
+        }
+        
     }//GEN-LAST:event_checkActionPerformed
 
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
@@ -284,25 +295,15 @@ public class mainFrame extends javax.swing.JFrame {
             description1.setText("At least " + (numChildren-(numGuardians * 8)) + " child(ren) aged 6-9 must pass the SWIM TEST to meet the standard." );
         }
         
-        
         else if(numInfants == numGuardians * 2 && numInfants > 0 && numChildren > 0) {
             result.setText("STANDARD IS CONDITIONALLY MET");
             description.setText("Any children aged 6-9 must pass the SWIM TEST to meet the standard.");
-            description1.setText("All " + numChildren + " child(ren) must pass the SWIM TEST to meet the standard.");
+            description1.setText("All " + numChildren + " child(ren) aged 6-9 must pass the SWIM TEST to meet the standard.");
         }
         
         //Case 3: There are infants that require guardian supervision, as well as potential children that may need supervision
-        else if(numInfants <= numGuardians * 2 && numChildren > numGuardians  && numInfants > 0 && numChildren > 0) {
-            int freeGuardians = numGuardians - (int)((Math.ceil((double)numInfants/2)));
-            result.setText("STANDARD IS CONDITIONALLY MET");
-            description.setText("Guardians supervising a child 5 and under can only supervise 1 other child, regardless of age.");
-            if(freeGuardians > 0) {
-                description1.setText("At least " + (int)(numChildren - (freeGuardians*8)) + " child(ren) must pass the SWIM TEST to meet the standard.");
-            }
-            else if(freeGuardians <= 0) {
-                description1.setText("All " + numChildren + " child(ren) must pass the SWIM TEST to meet the standard.");
-            }
-        }
+        
+        //
         
         
         //Case 4: There are too many children for a guardian to supervise unless lifejackets are worn.
@@ -329,6 +330,33 @@ public class mainFrame extends javax.swing.JFrame {
             description1.setText("If there are over 4 children 9 and under requiring supervision, they must all wear LIFEJACKETS.");
         }
         */
+        
+        else if(numInfants <= numGuardians * 2 && numInfants > 0 && numChildren > 0) {
+            int infantGuardians = 0;
+            int otherGuardians = 0;
+            int testChildren = 0;
+            result.setText("STANDARD IS CONDITIONALLY MET");
+            if(numInfants % 2 == 0) {
+                infantGuardians = numInfants/2;
+                otherGuardians = numGuardians - infantGuardians;
+                testChildren = numChildren - (otherGuardians * 8);
+                
+            }
+            else if(numInfants % 2 != 0) {
+                infantGuardians = (int) Math.ceil((((double)numInfants)/2));
+                otherGuardians = numGuardians - infantGuardians;
+                testChildren = (numChildren - (otherGuardians * 8)) - 1;
+            }
+            
+            description.setText(otherGuardians + " guardian(s) are avaialable to supervise up to 8 children exclusively aged 6-9.");
+            if(testChildren <= 0) {
+                description1.setText("Any children aged 6-9 that fail the SWIM TEST must stay with avaialable guardians.");
+            }
+            else if(testChildren > 0) {
+                description1.setText(testChildren + " children aged 6-9 must pass the SWIM TEST to meet the standard.");
+            }
+        }
+        
         
         else {
             result.setText("STANDARD IS MET");
@@ -394,6 +422,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel info;
     private javax.swing.JLabel info1;
     private javax.swing.JLabel info2;
+    private javax.swing.JLabel info3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
