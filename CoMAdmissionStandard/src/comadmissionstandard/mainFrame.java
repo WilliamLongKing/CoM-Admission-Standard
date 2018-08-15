@@ -6,10 +6,16 @@
 package comadmissionstandard;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,6 +47,7 @@ public class mainFrame extends javax.swing.JFrame {
         infants.setFont(inputFont);
         check.setFont(inputFont);
         help.setFont(inputFont);
+        help1.setFont(inputFont);
         
         Font resultFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts\\Open_Sans\\OpenSans-Regular.ttf")).deriveFont(32f);
         result.setFont(resultFont);
@@ -82,6 +89,8 @@ public class mainFrame extends javax.swing.JFrame {
         description1 = new javax.swing.JLabel();
         info2 = new javax.swing.JLabel();
         info3 = new javax.swing.JLabel();
+        help1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         author = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,7 +102,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\willi\\Documents\\NetBeansProjects\\CoMAdmissionStandard\\img\\logo.png")); // NOI18N
 
-        help.setText("View Standard");
+        help.setText("View Written Standard");
         help.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpActionPerformed(evt);
@@ -108,9 +117,15 @@ public class mainFrame extends javax.swing.JFrame {
 
         label3.setText("Number of Dependent Children (5 and under):");
 
+        guardians.setText("0");
         guardians.setToolTipText("");
 
+        youths.setText("0");
         youths.setToolTipText("");
+
+        children.setText("0");
+
+        infants.setText("0");
 
         check.setText("Check Standard");
         check.addActionListener(new java.awt.event.ActionListener() {
@@ -123,13 +138,22 @@ public class mainFrame extends javax.swing.JFrame {
         info.setText("All individuals aged 10 and up may enter the swim unaccompanied. ");
 
         info1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        info1.setText("All individuals aged 6-9 may enter the swim with an out of water guardian if they pass the swim test.");
+        info1.setText("All individuals aged 6-9 that DO NOT pass the swim test must be accompanied by a guardian WITHIN ARMS REACH.");
 
         info2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        info2.setText("Individuals aged 5 and under, or aged 6 to 9 that do not pass the swim test must remain within arms reach.");
+        info2.setText("Individuals aged 5 and under or aged 6 to 9 that DO NOT pass the swim test must remain WITHIN ARMS REACH.");
 
         info3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        info3.setText("Guardians may supervise 2 children if one is 5 and under, 4 children all aged 6-9 (no lifejackets), or 8 children all aged 6-9 (lifejackets).");
+        info3.setText("Guardians may supervise 2 children if one is 5 and under OR 4 children all aged 6-9 (no lifejackets) OR 8 children all aged 6-9 (lifejackets).");
+
+        help1.setText("View Visual Standard");
+        help1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                help1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("City of Mississauga Admission Standard");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,8 +187,11 @@ public class mainFrame extends javax.swing.JFrame {
                                             .addComponent(label)
                                             .addComponent(label3)
                                             .addComponent(label2)
-                                            .addComponent(help))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(help)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(help1)))
+                                        .addGap(56, 56, 56)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(infants, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
@@ -173,6 +200,10 @@ public class mainFrame extends javax.swing.JFrame {
                                     .addComponent(guardians, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(check, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,14 +229,17 @@ public class mainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(check)
-                    .addComponent(help))
+                    .addComponent(help)
+                    .addComponent(help1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(result)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(description)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(description1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(info3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,23 +259,24 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(author)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(author))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(author)
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         pack();
@@ -251,10 +286,10 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             check();
-            //guardians.setText("");
-            //children.setText("");
-            //infants.setText("");
-            //youths.setText("");
+            guardians.setText("0");
+            children.setText("0");
+            infants.setText("0");
+            youths.setText("0");
         } catch (NumberFormatException e) {
             result.setText("ERROR");
             description.setText("Please fill out all fields before checking the standard.");
@@ -264,9 +299,48 @@ public class mainFrame extends javax.swing.JFrame {
 
     private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
         // TODO add your handling code here:
-        Admission admission = new Admission();
-        admission.setVisible(true);
+        //Admission admission = new Admission();
+        //admission.setVisible(true);
+        if(Desktop.isDesktopSupported()) {
+            try {
+                File visualStandard = new File("C:\\Users\\willi\\Documents\\NetBeansProjects\\CoMAdmissionStandard\\src\\comadmissionstandard\\writtenStandard.pdf");
+                String path = visualStandard.getAbsolutePath();
+                jLabel3.setForeground(Color.WHITE);
+                jLabel3.setText(path);
+                Desktop.getDesktop().open(visualStandard);
+            } catch (IOException ex) {
+                
+            }
+        }
+        //File wordStandard = new File;
     }//GEN-LAST:event_helpActionPerformed
+
+    private void help1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_help1ActionPerformed
+        // TODO add your handling code here:
+        //VisualAdmission admission1 = new VisualAdmission();
+        //admission1.setVisible(true);
+        if(Desktop.isDesktopSupported()) {
+            try {
+                File visualStandard = new File("C:\\Users\\willi\\Documents\\NetBeansProjects\\CoMAdmissionStandard\\src\\comadmissionstandard\\visualStandard.pdf");
+                String path = visualStandard.getAbsolutePath();
+                jLabel3.setForeground(Color.WHITE);
+                jLabel3.setText(path);
+                Desktop.getDesktop().open(visualStandard);
+            } catch (IOException ex) {
+                
+            }
+        }
+        /*try {
+            fr = new FileReader(visualStandard);
+            BufferedReader br = new BufferedReader(fr);
+            //br
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(mainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        
+        
+    }//GEN-LAST:event_help1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,20 +350,26 @@ public class mainFrame extends javax.swing.JFrame {
         result.setText("");
         description.setText("");
         description1.setText("");
+        result.setForeground(Color.red);
         int numGuardians = Integer.parseInt(guardians.getText());
         int numYouths = Integer.parseInt(youths.getText());
         int numChildren = Integer.parseInt(children.getText());
         int numInfants = Integer.parseInt(infants.getText());
         //LET'S ADD IN ACTUAL NUMBERS
         //Case 1: There are too many infants for each guardian to supervise
-        if(numInfants > numGuardians * 2) {
+        if(numInfants == 0 && numChildren == 0 && numYouths == 0 && numGuardians == 0) {
+            result.setText("ERROR");
+            description.setText("No fields were filled out with non-zero numbers.");
+            description1.setText("Please fill out fields to continue.");
+        }
+        else if(numInfants > numGuardians * 2) {
             result.setText("DOES NOT MEET STANDARD");
             description.setText("There must be 1 guardian for every 2 children aged 5 and under.");
             description1.setText((int)((Math.ceil((double)numInfants/2)) - numGuardians) + " more guardian(s) are needed to supervise " + numInfants + " children aged 5 and under.");
         }
         
         //Case 2: There are too many children for each guardian to supervise, even in lifejackets
-        else if(numChildren > numGuardians * 8) {
+        else if(numChildren > numGuardians * 8 && numInfants == 0) {
             result.setText("STANDARD IS CONDITITONALLY MET");
             description.setText("There must be 1 guardian for every 8 supervised children WEARING LIFEJACKETS aged 6 to 9.");
             description1.setText("At least " + (numChildren-(numGuardians * 8)) + " child(ren) aged 6-9 must pass the SWIM TEST to meet the standard." );
@@ -315,11 +395,13 @@ public class mainFrame extends javax.swing.JFrame {
         
         else if(numInfants <= numGuardians * 2 && numChildren == 0 && numInfants > 0) {
             result.setText("STANDARD IS MET");
+            result.setForeground(Color.GREEN);
             description.setText("All children aged 5 and under must be within arms reach of a guardian.");
         }
         
         else if(numChildren <= numGuardians * 4 && numInfants == 0 && numChildren > 0) {
             result.setText("STANDARD IS MET");
+            result.setForeground(Color.GREEN);
             description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
         }
         
@@ -330,6 +412,11 @@ public class mainFrame extends javax.swing.JFrame {
             description1.setText("If there are over 4 children 9 and under requiring supervision, they must all wear LIFEJACKETS.");
         }
         */
+        else if(numInfants + numChildren == numGuardians * 2) {
+            result.setText("STANDARD IS MET");
+            result.setForeground(Color.GREEN);
+            description.setText("All children aged 9 and under that do not pass the SWIM TEST must remain within arms reach.");
+        }
         
         else if(numInfants <= numGuardians * 2 && numInfants > 0 && numChildren > 0) {
             int infantGuardians = 0;
@@ -348,7 +435,7 @@ public class mainFrame extends javax.swing.JFrame {
                 testChildren = (numChildren - (otherGuardians * 8)) - 1;
             }
             
-            description.setText(otherGuardians + " guardian(s) are avaialable to supervise up to 8 children exclusively aged 6-9.");
+            description.setText(otherGuardians + " guardian(s) are available to supervise up to 8 children exclusively aged 6-9.");
             if(testChildren <= 0) {
                 description1.setText("Any children aged 6-9 that fail the SWIM TEST must stay with avaialable guardians.");
             }
@@ -418,6 +505,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel description1;
     private javax.swing.JTextField guardians;
     private javax.swing.JButton help;
+    private javax.swing.JButton help1;
     private javax.swing.JTextField infants;
     private javax.swing.JLabel info;
     private javax.swing.JLabel info1;
@@ -425,6 +513,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel info3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label;
     private javax.swing.JLabel label1;

@@ -32,15 +32,18 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="author" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="author" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jPanel1" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,9 +52,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Component id="author" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="author" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,9 +96,13 @@
                                               <Component id="label" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="label3" min="-2" max="-2" attributes="0"/>
                                               <Component id="label2" min="-2" max="-2" attributes="0"/>
-                                              <Component id="help" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="help" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="help1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -112,6 +119,11 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,6 +156,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="check" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="help" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="help1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="result" min="-2" max="-2" attributes="0"/>
@@ -151,7 +164,9 @@
                   <Component id="description" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="description1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="89" max="32767" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="info3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -184,7 +199,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="help">
           <Properties>
-            <Property name="text" type="java.lang.String" value="View Standard"/>
+            <Property name="text" type="java.lang.String" value="View Written Standard"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="helpActionPerformed"/>
@@ -212,17 +227,25 @@
         </Component>
         <Component class="javax.swing.JTextField" name="guardians">
           <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="youths">
           <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="children">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="infants">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="check">
           <Properties>
@@ -249,7 +272,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="All individuals aged 6-9 may enter the swim with an out of water guardian if they pass the swim test."/>
+            <Property name="text" type="java.lang.String" value="All individuals aged 6-9 that DO NOT pass the swim test must be accompanied by a guardian WITHIN ARMS REACH."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="description1">
@@ -259,7 +282,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Individuals aged 5 and under, or aged 6 to 9 that do not pass the swim test must remain within arms reach."/>
+            <Property name="text" type="java.lang.String" value="Individuals aged 5 and under or aged 6 to 9 that DO NOT pass the swim test must remain WITHIN ARMS REACH."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="info3">
@@ -267,7 +290,20 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Guardians may supervise 2 children if one is 5 and under, 4 children all aged 6-9 (no lifejackets), or 8 children all aged 6-9 (lifejackets)."/>
+            <Property name="text" type="java.lang.String" value="Guardians may supervise 2 children if one is 5 and under OR 4 children all aged 6-9 (no lifejackets) OR 8 children all aged 6-9 (lifejackets)."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="help1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Visual Standard"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="help1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="City of Mississauga Admission Standard"/>
           </Properties>
         </Component>
       </SubComponents>
